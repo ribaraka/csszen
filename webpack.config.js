@@ -21,7 +21,11 @@ module.exports = {
         test: /\.js$/,
       },
       {
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, './src/img')],
+        test: /\.(png|jpg|svg|gif)$/,
+        use: ['file-loader']
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
