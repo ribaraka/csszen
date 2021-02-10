@@ -16,12 +16,10 @@ module.exports = {
   module: {
     rules: [
       {
-        include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
         test: /\.js$/,
       },
       {
-        include: [path.resolve(__dirname, './src/img')],
         test: /\.(png|jpg|svg|gif)$/,
         use: ['file-loader']
       },

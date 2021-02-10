@@ -1,5 +1,5 @@
-import './css/style.css';
-import './css/panel.css';
+import './assets/css/style.css';
+import './assets/css/panel.css';
 
 const input = document.querySelector('.selector');
 const buttonFind = document.querySelector('.selector-find');
@@ -10,8 +10,8 @@ const buttonFirstChild = document.querySelector('.nav-bottom');
 const buttonPreviousSibling = document.querySelector('.nav-left');
 const buttonNextSibling = document.querySelector('.nav-right');
 let foundValues = [];
-let counter = 0;
-let selector = [];
+let indexOfFoundValues = 0;
+let selector = null;
 
 function selectorStyleOn(selector) {
     selector.style.outline = 'solid red 5px';
@@ -24,37 +24,37 @@ function selectorStyleOff(selector){
 }
 
 function findValue () {
-    if (selector.length !== 0){
+    if (selector){
         selectorStyleOff(selector);
     }
-    counter = 0;
+    indexOfFoundValues = 0;
     foundValues = Array.from(document.querySelectorAll(input.value));
-    selector = foundValues[counter];
+    selector = foundValues[indexOfFoundValues];
     selectorStyleOn(selector);
     checkButton();
 }
 
 function checkButton() {
-    buttonNext.disabled = foundValues[counter + 1] === undefined;
-    buttonPrevious.disabled = foundValues[counter - 1] === undefined;
+    buttonNext.disabled = foundValues[indexOfFoundValues + 1] === undefined;
+    buttonPrevious.disabled = foundValues[indexOfFoundValues - 1] === undefined;
     buttonParent.disabled = selector.parentElement === null;
     buttonFirstChild.disabled = selector.firstElementChild === null;
     buttonPreviousSibling.disabled = selector.previousElementSibling === null;
-    buttonNextSibling.disabled = selector.nextElementSibling;
+    buttonNextSibling.disabled = selector.nextElementSibling === null;
 }
 
 function findNextValue() {
     selectorStyleOff(selector);
-    counter += 1;
-    selector = foundValues[counter];
+    indexOfFoundValues += 1;
+    selector = foundValues[indexOfFoundValues];
     selectorStyleOn(selector);
     checkButton();
 }
 
 function findPreviousValue() {
     selectorStyleOff(selector);
-    counter -= 1;
-    selector = foundValues[counter];
+    indexOfFoundValues -= 1;
+    selector = foundValues[indexOfFoundValues];
     selectorStyleOn(selector);
     checkButton();
 }
