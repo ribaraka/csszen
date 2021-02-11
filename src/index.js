@@ -98,3 +98,9 @@ buttonParent.addEventListener('click', findParentElement);
 buttonFirstChild.addEventListener('click', findFirstChildElement);
 buttonPreviousSibling.addEventListener('click', previousSibling);
 buttonNextSibling.addEventListener('click', nextSibling);
+
+input.addEventListener('keyup', event => {
+  if (event.keyCode === 13) {
+    buttonFind.click();
+  }
+});
